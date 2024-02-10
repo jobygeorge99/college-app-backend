@@ -5,13 +5,19 @@ const studentModel = require("../models/studentModel")
 
 const router = express.Router()
 
-router.post("/add-stud",(req,res)=>{
+router.post("/add-stud",async(req,res)=>{
     let data = req.body
     let studentModelObj = new studentModel(data)
-    let result = studentModelObj.save()
+    let result = await studentModelObj.save()
     res.json({
         "status":"success"
     })
+})
+
+router.post("/viewall-stud",async(req,res)=>{
+    let result = await studentModel.find()
+    console.log(result)
+    res.json(result)
 })
 
 module.exports=router
