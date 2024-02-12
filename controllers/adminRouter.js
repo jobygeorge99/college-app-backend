@@ -1,5 +1,6 @@
 const express = require("express")
 const studentModel = require("../models/studentModel")
+const marksModel = require("../models/marksModel")
 
 
 
@@ -19,5 +20,13 @@ router.post("/viewall-stud",async(req,res)=>{
     console.log(result)
     res.json(result)
 })
+
+router.get("/view-stud-with-marks",async(req,res)=>{
+    let result = await marksModel.find()    
+    .populate("userid","name rollno admno -_id")
+    .exec()
+    res.json(result)
+})
+
 
 module.exports=router
