@@ -21,11 +21,12 @@ router.post("/viewall-stud",async(req,res)=>{
     res.json(result)
 })
 
-router.post("/view-stud-with-marks",async(req,res)=>{
-    let result = await studentModel.find()
-    .populate()
+router.get("/view-stud-with-marks",async(req,res)=>{
+    let result = await marksModel.find()    
+    .populate("userid maths physiscs","name rollno admno -_id")
     .exec()
     res.json(result)
 })
+
 
 module.exports=router
