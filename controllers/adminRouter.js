@@ -23,7 +23,7 @@ router.post("/viewall-stud",async(req,res)=>{
 
 router.get("/view-stud-with-marks",async(req,res)=>{
     let result = await marksModel.find()    
-    .populate("userid maths physiscs","name rollno admno -_id")
+    .populate("userid","name rollno admno -_id")
     .exec()
     res.json(result)
 })
